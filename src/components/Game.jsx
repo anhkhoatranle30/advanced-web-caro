@@ -31,6 +31,7 @@ export default function Game() {
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
   const [isAscending, setIsAscending] = useState(true);
+  const [boardSize, setBoardSize] = useState(5);
 
   const handleClick = (i) => {
     const current = history[history.length - 1];
@@ -114,7 +115,7 @@ export default function Game() {
           squares={current.squares}
           onClick={(i) => handleClick(i)}
           winnerPositions={calculateWinner(current.squares).winnerPositions}
-          boardSize={20}
+          boardSize={boardSize}
         />
       </div>
       <div className="game-info">
