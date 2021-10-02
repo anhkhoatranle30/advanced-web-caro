@@ -114,6 +114,16 @@ export default function Game() {
           Sort moves
         </button>
       </div>
+      <div className="game-board-size-input">
+        <label for="board-size">Board size (between 5 and 20):</label>
+        <input
+          type="number"
+          id="board-size"
+          name="board-size"
+          min="5"
+          max="20"
+        />
+      </div>
     </div>
   );
 }
