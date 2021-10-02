@@ -122,6 +122,12 @@ export default function Game() {
           name="board-size"
           min="5"
           max="20"
+          value={boardSize}
+          onChange={(e) => {
+            setBoardSize(e.target.value);
+            setHistory(history.slice(0, 1));
+          }}
+          disabled={stepNumber > 0}
         />
       </div>
     </div>
