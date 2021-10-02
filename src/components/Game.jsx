@@ -45,36 +45,19 @@ export default function Game() {
         {
           squares: squares,
           lastMove: {
-            col: parseInt(i % 3),
-            row: parseInt(i / 3),
+            col: parseInt((i % boardSize) + 1),
+            row: parseInt(i / boardSize + 1),
           },
         },
       ])
     );
     setStepNumber(history.length);
     setXIsNext(!xIsNext);
-    // this.setState({
-    //   history: history.concat([
-    //     {
-    //       squares: squares,
-    //       lastMove: {
-    //         col: parseInt(i % 3),
-    //         row: parseInt(i / 3),
-    //       },
-    //     },
-    //   ]),
-    //   stepNumber: history.length,
-    //   xIsNext: !xIsNext,
-    // });
   };
 
   const jumpTo = (step) => {
     setStepNumber(step);
     setXIsNext(step % 2 === 0);
-    // this.setState({
-    //   stepNumber: step,
-    //   xIsNext: step % 2 === 0,
-    // });
   };
 
   const current = history[stepNumber];
