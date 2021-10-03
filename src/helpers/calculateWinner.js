@@ -70,7 +70,7 @@ const calculateWinner = (squares1D) => {
             result.winnerPositions = positions;
           }
         }
-        if (j - 4 > 0) {
+        if (j - 4 >= 0) {
           const turns = [];
           const positions = [];
           for (let k = j; k > j - 5; k--) {
@@ -96,7 +96,7 @@ const calculateWinner = (squares1D) => {
               result.winnerPositions = positions;
             }
           }
-          if (j - 4 > 0) {
+          if (j - 4 >= 0) {
             const turns = [];
             const positions = [];
             for (let k = 0; k < 5; k++) {
@@ -122,7 +122,7 @@ const calculateWinner = (squares1D) => {
               result.winnerPositions = positions;
             }
           }
-          if (j - 4 > 0) {
+          if (j - 4 >= 0) {
             const turns = [];
             const positions = [];
             for (let k = 0; k < 5; k++) {
