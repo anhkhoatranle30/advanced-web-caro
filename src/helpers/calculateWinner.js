@@ -25,7 +25,6 @@ const calculateWinner = (squares1D) => {
   };
 
   const squares = mapArrayTo2DArray(squares1D);
-  console.log(squares);
 
   const size = squares.length;
 

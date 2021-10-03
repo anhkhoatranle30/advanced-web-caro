@@ -16,9 +16,11 @@ export default function Game() {
   ]);
 
   const handleClick = (i) => {
-    const current = history[history.length - 1];
+    const current = history[stepNumber];
     const squares = current.squares.slice();
+    console.log(history);
     if (calculateWinner(squares).winner || squares[i]) {
+      console.log('...');
       return;
     }
     squares[i] = xIsNext ? 'X' : 'O';
@@ -43,35 +45,39 @@ export default function Game() {
   };
 
   const current = history[stepNumber];
-  const moves = history.map((step, move) => {
-    const desc = move
-      ? 'Go to move #' +
-        move +
-        `(col: ${step.lastMove.col}, row: ${step.lastMove.row})`
-      : 'Go to game start';
-    return (
-      <li className={stepNumber === move ? 'boldText' : null} key={move}>
-        <button
-          className={stepNumber === move ? 'boldText' : null}
-          onClick={() => jumpTo(move)}
-        >
-          {desc}
-        </button>
-      </li>
-    );
-  });
-  const { winner } = calculateWinner(current.squares);
+  const moves = () =>
+    history.map((step, move) => {
+      const desc = move
+        ? 'Go to move #' +
+          move +
+          `(col: ${step.lastMove.col}, row: ${step.lastMove.row})`
+        : 'Go to game start';
+      return (
+        <li className={stepNumber === move ? 'boldText' : null} key={move}>
+          <button
+            className={stepNumber === move ? 'boldText' : null}
+            onClick={() => jumpTo(move)}
+          >
+            {desc}
+          </button>
+        </li>
+      );
+    });
 
-  let status;
-  if (winner) {
-    status = 'Winner: ' + winner;
-  } else {
-    if (!current.squares.includes(null)) {
-      status = 'Draw';
+  const findStatus = () => {
+    const { winner } = calculateWinner(current.squares);
+    let status;
+    if (winner) {
+      status = 'Winner: ' + winner;
     } else {
-      status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+      if (!current.squares.includes(null)) {
+        status = 'Draw';
+      } else {
+        status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+      }
     }
-  }
+    return status;
+  };
 
   return (
     <div className="game">
@@ -84,8 +90,8 @@ export default function Game() {
         />
       </div>
       <div className="game-info">
-        <div>{status}</div>
-        <ol>{isAscending ? moves : moves.reverse()}</ol>
+        <div>{findStatus()}</div>
+        <ol>{isAscending ? moves() : moves().reverse()}</ol>
       </div>
       <div>
         <button
@@ -97,7 +103,7 @@ export default function Game() {
         </button>
       </div>
       <div className="game-board-size-input">
-        <label for="board-size">Board size (between 5 and 20):</label>
+        <label htmlFor="board-size">Board size (between 5 and 20):</label>
         <input
           type="number"
           id="board-size"
@@ -111,7 +117,12 @@ export default function Game() {
               setBoardSize(5);
             } else {
               setBoardSize(size);
-              setHistory(history.slice(0, 1));
+              setHistory([
+                {
+                  squares: Array(size * size).fill(null),
+                  lastMove: null,
+                },
+              ]);
             }
           }}
           disabled={stepNumber > 0}
