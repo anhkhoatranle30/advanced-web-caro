@@ -18,9 +18,7 @@ export default function Game() {
   const handleClick = (i) => {
     const current = history[stepNumber];
     const squares = current.squares.slice();
-    console.log(history);
     if (calculateWinner(squares).winner || squares[i]) {
-      console.log('...');
       return;
     }
     squares[i] = xIsNext ? 'X' : 'O';

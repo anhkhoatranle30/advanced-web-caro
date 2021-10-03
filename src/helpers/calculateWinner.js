@@ -66,7 +66,6 @@ const calculateWinner = (squares1D) => {
             positions.push(i * size + k);
           }
           if (checkEquals(turns)) {
-            console.log(turns, checkEquals(turns));
             result.winner = player;
             result.winnerPositions = positions;
           }
