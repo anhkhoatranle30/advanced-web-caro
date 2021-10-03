@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: scroll;
 }
 
 code {
@@ -73,7 +74,15 @@ ul {
 }
 
 .game-board-size-input {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: large;
   display: flex;
   flex-direction: column;
   margin-left: 10px;
+}
+
+.game-board-size-input input {
+  font-size: large;
 }
