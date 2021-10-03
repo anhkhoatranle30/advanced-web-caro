@@ -32,7 +32,6 @@ export default function Game() {
     // setStepNumber(newHistory.length);
     setHistory(newHistory);
     jumpTo(stepNumber + 1);
-    setXIsNext(!xIsNext);
   };
 
   const jumpTo = (step) => {
