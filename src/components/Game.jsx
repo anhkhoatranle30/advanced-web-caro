@@ -22,18 +22,16 @@ export default function Game() {
       return;
     }
     squares[i] = xIsNext ? 'X' : 'O';
-    setHistory(
-      history.concat([
-        {
-          squares: squares,
-          lastMove: {
-            col: parseInt((i % boardSize) + 1),
-            row: parseInt(i / boardSize + 1),
-          },
-        },
-      ])
-    );
-    setStepNumber(history.length);
+    const newHistory = history.slice(0, stepNumber + 1).concat({
+      squares: squares,
+      lastMove: {
+        col: parseInt((i % boardSize) + 1),
+        row: parseInt(i / boardSize + 1),
+      },
+    });
+    // setStepNumber(newHistory.length);
+    setHistory(newHistory);
+    jumpTo(stepNumber + 1);
     setXIsNext(!xIsNext);
   };
 
@@ -81,9 +79,11 @@ export default function Game() {
     <div className="game">
       <div className="game-board">
         <Board
-          squares={current.squares}
+          squares={history[stepNumber].squares}
           onClick={(i) => handleClick(i)}
-          winnerPositions={calculateWinner(current.squares).winnerPositions}
+          winnerPositions={
+            calculateWinner(history[stepNumber].squares).winnerPositions
+          }
           boardSize={boardSize}
         />
       </div>
