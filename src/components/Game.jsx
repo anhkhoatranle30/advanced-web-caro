@@ -4,16 +4,16 @@ import Board from './Board';
 import calculateWinner from '../helpers/calculateWinner';
 
 export default function Game() {
-  const [history, setHistory] = useState([
-    {
-      squares: Array(9).fill(null),
-      lastMove: null,
-    },
-  ]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
   const [isAscending, setIsAscending] = useState(true);
   const [boardSize, setBoardSize] = useState(5);
+  const [history, setHistory] = useState([
+    {
+      squares: Array(boardSize * boardSize).fill(null),
+      lastMove: null,
+    },
+  ]);
 
   const handleClick = (i) => {
     const current = history[history.length - 1];

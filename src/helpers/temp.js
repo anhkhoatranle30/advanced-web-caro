@@ -1,3 +1,13 @@
+const x = 'X';
+const o = 'O';
+const squares = [
+  [x, null, o, null, x],
+  [o, x, null, o, x],
+  [o, null, x, null, o],
+  [o, null, null, x, o],
+  [null, null, null, null, x],
+];
+
 const checkEquals = (...args) => {
   for (let i = 0; i < args[0].length; i++) {
     if (args[0][0] !== args[0][i]) return false;
@@ -5,27 +15,11 @@ const checkEquals = (...args) => {
   return true;
 };
 
-const mapArrayTo2DArray = (arr) => {
-  const result = [];
-  const size = Math.sqrt(arr.length);
-  for (let i = 0; i < size; i++) {
-    const row = [];
-    for (let j = 0; j < size; j++) {
-      row.push(arr[i * size + j]);
-    }
-    result.push(row);
-  }
-  return result;
-};
-
-const calculateWinner = (squares1D) => {
+const calculateWinner = (squares) => {
   const result = {
     winner: null,
     winnerPositions: [],
   };
-
-  const squares = mapArrayTo2DArray(squares1D);
-  console.log(squares);
 
   const size = squares.length;
 
@@ -144,4 +138,5 @@ const calculateWinner = (squares1D) => {
   return result;
 };
 
-export default calculateWinner;
+const sth = calculateWinner(squares);
+console.log(sth);
