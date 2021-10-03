@@ -124,8 +124,13 @@ export default function Game() {
           max="20"
           value={boardSize}
           onChange={(e) => {
-            setBoardSize(e.target.value);
-            setHistory(history.slice(0, 1));
+            const size = e.target.value;
+            if (size < 5 || size > 20) {
+              setBoardSize(5);
+            } else {
+              setBoardSize(size);
+              setHistory(history.slice(0, 1));
+            }
           }}
           disabled={stepNumber > 0}
         />
